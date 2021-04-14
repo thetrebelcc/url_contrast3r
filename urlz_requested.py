@@ -2,12 +2,14 @@ import asyncio
 from pprint import pprint
 from pyppeteer import launch
 from pyppeteer.network_manager import NetworkManager
+import sys
+
 
 
 url_name = input("Enter a FULL domain to scan: ")
 print("scanning:" + str(url_name))
 
-input_url_list = [url_name]
+input_url_list = ["https://"+url_name]
 
 url_list = input_url_list
 
@@ -53,6 +55,11 @@ for url in request_listing:
 def pause():
     programPause = input("Press the <ENTER> key to see list of domains that were parsed")
     pprint(parsed_urls)
+
+    sys.stdout = open("test.txt", "w")
+    pprint(parsed_urls)
+    sys.stdout.close()
+
 
 pause()
 
